@@ -1,6 +1,12 @@
 import { Menu } from "./Menu/Menu"
-import { Review } from "./Review/Review"
+import { ReviewForm } from "./review-form/Review-form";
+import { Reviews } from "./Reviews/Reviews";
 export const Restaurant = ({restaurant}) => {
+
+    if (!restaurant.name) {
+        return null;
+    }
+
     return(
         <>
         <div className="card" style={{width: '20rem' }}>
@@ -16,14 +22,8 @@ export const Restaurant = ({restaurant}) => {
                 )
             )}
             </ul>
-            <h3>Отзывыв:</h3>
-            <ul className="reviews">
-                {
-                restaurant.reviews.map((review) => (
-                < Review review={review} key={review.id} />
-                ))
-                }
-            </ul>
+                {restaurant.reviews ? <Reviews reviews={restaurant.reviews} /> : null }
+                <ReviewForm />
             <hr /> 
                     </div>
             </div>

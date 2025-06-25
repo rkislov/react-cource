@@ -1,4 +1,4 @@
-import { useState, useReducer } from "react"
+import { useState, useReducer, useRef } from "react"
 import { Counter } from "../../Counter/Counter"
 import { useCount } from "../../Counter/use-counter"
 import { useForm } from "./use-form"
@@ -7,6 +7,8 @@ import { useForm } from "./use-form"
 export const ReviewForm = () => {
     const {form, onNameChange, onTextChange, clear, increment, decrement, rating} = useForm()
     const {name, text} = form
+
+    const buttonRef = useRef(null)
 
     return(
         <>
@@ -39,7 +41,7 @@ export const ReviewForm = () => {
                 />
             </div>
             <div className="mt-3">
-                <button type="submit" className="btn btn-primary" onClick={() => {
+                <button ref={buttonRef} type="submit" className="btn btn-primary" onClick={() => {
                     clear()
             }}
                     >
